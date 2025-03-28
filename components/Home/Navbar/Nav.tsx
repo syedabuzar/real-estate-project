@@ -20,7 +20,12 @@ const Nav = () => {
           {navLinks.map((link) => {
             return (
               <Link href={link.url} key={link.id}>
-                <p className="relative text-white text-base font-medium w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-300 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition duration-300 after:origin-right">
+                <p
+                  className="relative text-white text-base font-medium w-fit block after:block 
+                  after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[3px] 
+                  after:bg-yellow-300 after:w-full after:scale-x-0 after:transition-transform 
+                  after:duration-300 after:origin-right hover:after:scale-x-100"
+                >
                   {link.label}
                 </p>
               </Link>
