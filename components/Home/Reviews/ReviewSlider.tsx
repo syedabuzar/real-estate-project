@@ -1,15 +1,26 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-cards";
-
 import { EffectCards } from "swiper/modules";
-import { reviewData } from "@/data/data";
 import { FaStar } from "react-icons/fa";
 import Image from "next/image";
 
 const ReviewSlider = () => {
+  const [reviews, setReviews] = useState<
+    Array<{ id: number; name: string; review: string; image: string }>
+  >([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const response = await fetch("/api/reviews");
+      const data = await response.json();
+      setReviews(data);
+    };
+    fetchReviews();
+  }, []);
+
   return (
     <div>
       <Swiper
@@ -18,7 +29,7 @@ const ReviewSlider = () => {
         modules={[EffectCards]}
         className="md:w-[450px] md:h-[350px] w-[90%] h-[300px]"
       >
-        {reviewData.map((data) => {
+        {reviews.map((data) => {
           return (
             <SwiperSlide key={data.id} className="bg-white rounded-3xl block">
               <div className="w-[80%] mx-auto mt-16">

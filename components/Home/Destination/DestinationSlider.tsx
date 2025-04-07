@@ -1,8 +1,6 @@
 "use client";
-import { destinationData } from "@/data/data";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import React from "react";
-
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -10,37 +8,43 @@ const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1324 },
     items: 5,
-    slidesToSlide: 1, // optional, default to 1.
+    slidesToSlide: 1,
   },
   tablet: {
     breakpoint: { max: 1324, min: 764 },
     items: 2,
-    slidesToSlide: 1, // optional, default to 1.
+    slidesToSlide: 1,
   },
   mobile: {
     breakpoint: { max: 764, min: 0 },
     items: 1,
-    slidesToSlide: 1, // optional, default to 1.
+    slidesToSlide: 1,
   },
 };
 
 const DestinationSlider = () => {
+  const [destinations, setDestinations] = useState<
+    Array<{ id: number; image: string; country: string; travelers: string }>
+  >([]);
+
+  useEffect(() => {
+    const fetchDestinations = async () => {
+      const response = await fetch("/api/destinations");
+      const data = await response.json();
+      setDestinations(data);
+    };
+    fetchDestinations();
+  }, []);
+
   return (
     <Carousel
       responsive={responsive}
-      //   ssr={true} // means to render carousel on server-side.
       infinite={true}
       autoPlay={true}
       autoPlaySpeed={5000}
       keyBoardControl={true}
-      //   customTransition="all .5"
-      //   transitionDuration={500}
-      //   containerClass="carousel-container"
-      //   removeArrowOnDeviceType={["tablet", "mobile"]}
-      //   dotListClass="custom-dot-list-style"
-      //   itemClass="carousel-item-padding-40-px"
     >
-      {destinationData.map((data) => {
+      {destinations.map((data) => {
         return (
           <div key={data.id} className="m-3">
             <div className="relative h-[400px]">
