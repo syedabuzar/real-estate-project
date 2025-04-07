@@ -8,6 +8,7 @@ export async function GET() {
     const destinations = await Destination.find({});
     return NextResponse.json(destinations);
   } catch (error) {
+    console.error("Error fetching destinations:", error);
     return NextResponse.json(
       { error: "Failed to fetch destinations" },
       { status: 500 }

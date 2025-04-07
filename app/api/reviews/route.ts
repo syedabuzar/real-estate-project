@@ -8,6 +8,7 @@ export async function GET() {
     const reviews = await Review.find({});
     return NextResponse.json(reviews);
   } catch (error) {
+    console.error("Error fetching reviews:", error);
     return NextResponse.json(
       { error: "Failed to fetch reviews" },
       { status: 500 }

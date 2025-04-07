@@ -13,6 +13,7 @@ export async function GET() {
     }));
     return NextResponse.json(transformedHotels);
   } catch (error) {
+    console.error("Error fetching hotels:", error);
     return NextResponse.json(
       { error: "Failed to fetch hotels" },
       { status: 500 }

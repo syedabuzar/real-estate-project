@@ -8,6 +8,7 @@ export async function GET() {
     const tours = await Tour.find({});
     return NextResponse.json(tours);
   } catch (error) {
+    console.error("Error fetching tours:", error);
     return NextResponse.json(
       { error: "Failed to fetch tours" },
       { status: 500 }
