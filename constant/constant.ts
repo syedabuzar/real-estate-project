@@ -7,21 +7,27 @@ export const navLinks = [
   {
     id: 2,
     url: "/about",
-    label: "About",
+    label: "About Us",
   },
   {
     id: 3,
-    url: "#",
-    label: "Apartments",
+    label: "Properties",
+    submenu: [
+      {
+        id: "rent",
+        url: "/properties/rent",
+        label: "For Rent",
+      },
+      {
+        id: "sale",
+        url: "/properties/sale",
+        label: "For Sale",
+      },
+    ],
   },
   {
     id: 4,
-    url: "#",
-    label: "Dashboard",
-  },
-  {
-    id: 5,
-    url: "#",
-    label: "Contact",
+    url: "/contact",
+    label: "Contact Us",
   },
 ];
