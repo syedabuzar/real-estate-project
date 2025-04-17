@@ -1,18 +1,28 @@
-"use client";
 import Image from "next/image";
 import { FaBed, FaBath, FaRulerCombined, FaMapMarkerAlt } from "react-icons/fa";
 import { sampleProperties, Property } from "@/app/data/sampleProperties";
 
-const PropertyDetailsPage = ({ params }: { params: { id: string } }) => {
-  const property = sampleProperties.find((p: Property) => p.id === params.id);
+// ✅ Mark the function as `async` and await `params`
+const PropertyDetailsPage = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
+  const { id } = await params; // ✅ unwrap the params promise
+
+  const property = sampleProperties.find((p: Property) => p.id === id);
 
   if (!property) {
-    return <div>Property not found</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center text-xl">
+        Property not found
+      </div>
+    );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 ">
+    <div className="min-h-screen bg-gray-50 pt-32 pb-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           {/* Property Image */}
           <div className="relative h-[500px] w-full">
