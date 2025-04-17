@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import { Check } from "lucide-react";
 
 const ListPropertyBanner = () => {
@@ -27,7 +26,7 @@ const ListPropertyBanner = () => {
           List your property
         </h1>
         <p className="text-lg md:text-xl mb-8">
-          Take your property 'Exclusive' with White & Co and enjoy all the
+          Take your property exclusive with Royal Pearl and enjoy all the
           exclusive benefits.
         </p>
 
